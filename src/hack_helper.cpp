@@ -41,8 +41,8 @@ namespace vst {
 
         while (item_ptr)
         {
-            int val[10] = { 99 , 99, 99, 99, 99, 99, 99, 99, 99, 99 };
-            if (!mw::write_process_memory(process_handle_, (char*)item_ptr + 0x8, (LPVOID)val, sizeof(int) * 10))
+            int val[9] = { 99 , 99, 99, 99, 99, 99, 99, 99, 99};
+            if (!mw::write_process_memory(process_handle_, (char*)item_ptr + 0xC, (LPVOID)val, sizeof(int) * 9))
             {
                 return false;
             }
