@@ -1,0 +1,7 @@
+{
+  "name": "vestaria-saga-trainer",
+  "version": "0.0.1",
+  "dependencies": [
+    "my-windows"
+  ]
+}
