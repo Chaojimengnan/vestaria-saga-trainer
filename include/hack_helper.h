@@ -3,6 +3,12 @@
 
 namespace vst {
 
+	enum class game_title
+	{
+		vestaria_1,
+		vestaria_ep2
+	};
+
 	class hack_helper
 	{
 	public:
@@ -14,18 +20,20 @@ namespace vst {
 		hack_helper& operator=(hack_helper&&) = delete;
 
 	public:
-		bool find_game();
+		bool find_game(game_title);
 
 		bool is_game_found()
 		{
 			return is_game_found_;
 		}
 
-		bool write_skill();
+		bool write_skill(int val);
 
-		bool write_exp();
+		bool write_exp(int val);
 
 		bool write_money(int money);
+
+		static const TCHAR* get_game_title_enum_str(game_title);
 
 	private:
 		hack_helper(){}
@@ -37,6 +45,7 @@ namespace vst {
 		LPVOID get_next_pointer_(LPVOID address, int offset);
 
 		LPVOID get_game_base_address_();
+
 
 
 	private:

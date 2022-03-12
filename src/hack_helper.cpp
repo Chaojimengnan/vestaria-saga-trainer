@@ -1,4 +1,5 @@
 #include "hack_helper.h"
+#include <array>
 
 
 namespace vst {
@@ -9,9 +10,11 @@ namespace vst {
         return hh;
     }
 
-    bool hack_helper::find_game()
+    bool hack_helper::find_game(game_title game_title_v)
     {
-        auto game_window = mw::user::find_window(_T(""), _T("Vestaria SagaⅠ"));
+        auto game_title_str = get_game_title_enum_str(game_title_v);
+        if (!game_title_str) return false;
+        auto game_window = mw::user::find_window(_T(""), game_title_str);
 
         if (game_window == NULL) return false;
 
@@ -32,7 +35,7 @@ namespace vst {
         return true;
     }
 
-    bool hack_helper::write_skill()
+    bool hack_helper::write_skill(int val)
     {
         if (!is_game_found_ || process_handle_ == NULL)
             return false;
@@ -41,8 +44,9 @@ namespace vst {
 
         while (item_ptr)
         {
-            int val[9] = { 99 , 99, 99, 99, 99, 99, 99, 99, 99};
-            if (!mw::write_process_memory(process_handle_, (char*)item_ptr + 0xC, (LPVOID)val, sizeof(int) * 9))
+            std::array<int, 9> data{};
+            data.fill(val);
+            if (!mw::write_process_memory(process_handle_, (char*)item_ptr + 0xC, (LPVOID)data.data(), sizeof(int) * 9))
             {
                 return false;
             }
@@ -51,7 +55,7 @@ namespace vst {
         return true;
     }
 
-    bool hack_helper::write_exp()
+    bool hack_helper::write_exp(int val)
     {
         if (!is_game_found_ || process_handle_ == NULL)
             return false;
@@ -60,7 +64,6 @@ namespace vst {
 
         while (item_ptr)
         {
-            int val = 999999;
             if (!mw::write_process_memory(process_handle_, (char*)item_ptr + 0x140, (LPVOID)&val, sizeof(int)))
             {
                 return false;
@@ -130,6 +133,20 @@ namespace vst {
         mw::get_thread_exit_code(thread_handle, address);
 
         return (LPVOID)address;
+    }
+
+    const TCHAR* hack_helper::get_game_title_enum_str(game_title game_title_v)
+    {
+        switch (game_title_v)
+        {
+        case vst::game_title::vestaria_1:
+            return _T("Vestaria SagaⅠ");
+        case vst::game_title::vestaria_ep2:
+            return _T("Vestaria EP2");
+        default:
+            return nullptr;
+        }
+        
     }
 
 }
