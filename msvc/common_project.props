@@ -6,6 +6,7 @@
     <TargetName>$(ProjectName)_$(PlatformTarget)_$(Configuration)</TargetName>
     <OutDir>$(SolutionDir)output\$(PlatformTarget)\$(Configuration)\bin\</OutDir>
     <IntDir>$(SolutionDir)temp\$(PlatformTarget)\$(Configuration)\</IntDir>
+    <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
