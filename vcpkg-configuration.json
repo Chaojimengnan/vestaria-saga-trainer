@@ -3,10 +3,11 @@
         {
             "kind": "git",
             "repository": "https://github.com/Chaojimengnan/lomekragow-registry",
-            "baseline": "90cc65933b1202e6654a02c9dff6950bb0a00ada",
+            "baseline": "5279e78210ef33eb45c6cfc6124a72dd672ace88",
             "packages": [
                 "my-windows",
-                "auto-tools"
+                "auto-tools",
+                "loerr"
             ]
         }
     ]

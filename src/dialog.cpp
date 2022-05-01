@@ -83,7 +83,7 @@ BOOL CALLBACK dialog_procedure(
         case VST_MOD_CHOOSE:
         {
 
-            auto return_val = mw::user::create_modal_dialog(VST_MOD_PEOPLE_DIALOG, mod_people_dialog_procedure, dialog_handle);
+            auto return_val = mw::user::create_modal_dialog(VST_MOD_PEOPLE_DIALOG, (DLGPROC)mod_people_dialog_procedure, dialog_handle);
 
             if (return_val > 1)
             {
@@ -104,7 +104,7 @@ BOOL CALLBACK dialog_procedure(
             // TODO: 获取物品索引
 
             auto return_index = mw::user::create_modal_dialog(VST_INPUT_ITEM_INDEX_DIALOG,
-                input_item_index_dialog_procedure, dialog_handle);
+                (DLGPROC)input_item_index_dialog_procedure, dialog_handle);
 
             if (return_index != INT_MAX)
             {
@@ -117,7 +117,7 @@ BOOL CALLBACK dialog_procedure(
                 return false;
             }
 
-            auto return_val = mw::user::create_modal_dialog(VST_MOD_ITEM_DIALOG, mod_item_dialog_procedure, dialog_handle, return_index - 1);
+            auto return_val = mw::user::create_modal_dialog(VST_MOD_ITEM_DIALOG, (DLGPROC)mod_item_dialog_procedure, dialog_handle, return_index - 1);
 
             if (return_val > 1)
             {
